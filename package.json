@@ -1,0 +1,19 @@
+{
+  "name": "divvy",
+  "version": "1.0.0",
+  "description": "Bill splitting app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artisanalaioli/artisanalaioli.git"
+  },
+  "author": "Artisanal Aioli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artisanalaioli/artisanalaioli/issues"
+  },
+  "homepage": "https://github.com/artisanalaioli/artisanalaioli#readme"
+}
