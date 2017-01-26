@@ -1,5 +1,5 @@
-var User = require('./Model.js').User;
-var Bill = require('./Model.js').Bill;
+import { User } from './models.js';
+import { Bill } from './models.js';
 //.findOne, .create, .find({})
 
 
@@ -17,7 +17,7 @@ send an object instead of an array:
     debtors: []
   };
 */
-var getOwnBills = function(req, res, next) {
+function getOwnBills(req, res, next) {
   User.findOne({id: SOMETHING})
   .then(function(user) {
     Bill.find({})
@@ -26,9 +26,9 @@ var getOwnBills = function(req, res, next) {
       res.send(bills);
     });
   });
-};
+}
 
-var postBill = function(req, res, next) {
+function postBill(req, res, next) {
   var newBill = {
     userID: SOMETHING,
     total: SOMETHING,
@@ -42,13 +42,14 @@ var postBill = function(req, res, next) {
       user.bills.push(createdBill.id);
       user.save(function(error, savedUser) {
         if (error) {
-          console.log(error) 
+          console.log(error); 
         } else {
           res.send('Success');
-      }
+        }
+      });
     });
   });
-};
+}
 
 export { postBill, getOwnBills };
 
