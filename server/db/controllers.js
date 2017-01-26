@@ -24,6 +24,23 @@ function getFriends(req, res, next) {
   });
 }
 
+function addFriend(req, res, next) {
+  User.findOne({id: SOMETHING})
+  .then(function(user) {
+    User.findOne({username: req.body.SOMETHING})
+    .then(function(friend) {
+      user.friends.push(friend.id);
+      user.save(function(error, savedUser) {
+        if (error) {
+          console.log(error); 
+        } else {
+          res.send('Friend added');
+        }
+      });
+    });
+  });
+}
+
 /*
 Consider refactoring to also send all bills related to you (the ones
 you don't own but were part of)
@@ -63,13 +80,13 @@ function postBill(req, res, next) {
         if (error) {
           console.log(error); 
         } else {
-          res.send('Success');
+          res.send('Bill saved');
         }
       });
     });
   });
 }
 
-export { postBill, getOwnBills, getAllUsers, getFriends };
+export { postBill, getOwnBills, getAllUsers, getFriends, addFriend };
 
 

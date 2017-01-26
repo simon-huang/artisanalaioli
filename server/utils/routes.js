@@ -1,5 +1,5 @@
 import { passport, register, logout } from './authentication';
-import { postBill, getOwnBills, getAllUsers, getFriends } from '../db/controllers';
+import { postBill, getOwnBills, getAllUsers, getFriends, addFriend } from '../db/controllers';
 
 export default function routes(app, express) {
   app.post('/auth/register', register);
@@ -13,6 +13,7 @@ export default function routes(app, express) {
   app.get('/bills', getOwnBills); // get own bills
   app.get('/users', getAllUsers); // to use when adding friends
   app.get('/me/friends', getFriends);
+  app.post('/me/friends', addFriend);
 
   /*
   Possible endpoints:
