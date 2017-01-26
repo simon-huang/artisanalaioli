@@ -1,5 +1,5 @@
 import { passport, register, logout } from './authentication';
-
+import { postBill, getOwnBills } from '../db/controllers';
 
 export default function routes(app, express) {
   app.post('/auth/register', register);
@@ -9,4 +9,6 @@ export default function routes(app, express) {
                                      failureFlash: true })
   );
   app.post('/auth/logout', logout);
+  app.post('/bills', postBill);
+  app.get('/bills', getOwnBills); // own bills
 }
