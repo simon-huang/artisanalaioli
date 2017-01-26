@@ -5,6 +5,25 @@ import { Bill } from './models.js';
 
 // ALL UNTESTED
 
+
+function getAllUsers(req, res, next) {
+  User.find({})
+  .then(function(users) {
+    res.send(users);
+  });
+}
+
+function getFriends(req, res, next) {
+  User.findOne({id: SOMETHING})
+  .then(function(user) {
+    User.find({})
+    .where(id).in(user.friends)
+    .then(function(friends) {
+      res.send(friends);
+    });
+  });
+}
+
 /*
 Consider refactoring to also send all bills related to you (the ones
 you don't own but were part of)
@@ -51,6 +70,6 @@ function postBill(req, res, next) {
   });
 }
 
-export { postBill, getOwnBills };
+export { postBill, getOwnBills, getAllUsers, getFriends };
 
 
