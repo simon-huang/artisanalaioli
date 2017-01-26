@@ -35,15 +35,11 @@ passport.use(new LocalStrategy({ passReqToCallback: true },
   }));
 
 function register(req, res, next) {
-  console.log(req.body);
   var username = req.body.username;
   var password = req.body.password;
 
-  console.log(User);
-
   User.findOne({ username: username })
     .exec(function(err, user) {
-      console.log('found user', user);
       if (!user) {
         return bcrypt.genSaltAsync()
           .then(function(salt) {
@@ -56,10 +52,8 @@ function register(req, res, next) {
 
             return newUser.save();
           }).then(function(user) {
-            console.log('user saved!', user); 
             res.end('saved');
           }).catch(function(err) {
-            console.log('some kind of error', err); 
             res.status(400).end();
           });
       } else {
@@ -69,7 +63,8 @@ function register(req, res, next) {
 }
 
 function logout(req, res, next) {
-  req.dession.destroy(function(err) {
+  req.session.destroy(function(err) {
+    res.clearCookie('connect.sid');
     res.redirect('/auth/login');
   });
 }
