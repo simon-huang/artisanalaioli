@@ -24,8 +24,8 @@ var BillSchema = new mongoose.Schema({
 });
 
 module.exports = {
-  User: mongoose.model('User', UserSchema);
-  Bill: mongoose.model('Bill', BillSchema);
+  User: mongoose.model('User', UserSchema),
+  Bill: mongoose.model('Bill', BillSchema)
 };
 
 
