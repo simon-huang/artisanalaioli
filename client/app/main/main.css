@@ -29,3 +29,19 @@
 .logo {
   clear: left;
 }
+
+button .receipt {
+  height: 50px;
+  margin-left: 0px !important;
+  text-align: center;
+}
+
+.spacer {
+  height: 20px;
+}
+
+span .btn {
+  width: 100%;
+  align-content: center;
+}
+

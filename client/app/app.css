@@ -45,8 +45,19 @@
 /* Component styles are injected through gulp */
 /* inject:css */
 @import 'admin/admin.css';
+@import 'bill/bill.css';
 @import 'main/main.css';
+@import 'options/options.css';
 @import '../components/footer/footer.css';
 @import '../components/modal/modal.css';
 @import '../components/oauth-buttons/oauth-buttons.css';
 /* endinject */
+
+btn btn-primary {
+  width: 110px;
+}
+
+
+btn btn-info {
+  width: 110px;
+}
