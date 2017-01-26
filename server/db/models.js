@@ -14,6 +14,7 @@ var UserSchema = new mongoose.Schema({
   venmo: String
 });
 
+//allow a name, a date
 var BillSchema = new mongoose.Schema({
   userID: mongoose.Schema.Types.ObjectId,
   total: Number,
