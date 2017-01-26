@@ -1,4 +1,7 @@
+import Promise from 'bluebird';
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/divvy');
+mongoose.Promise = Promise;
 
 var UserSchema = new mongoose.Schema({
   username: String,
@@ -24,8 +27,8 @@ var BillSchema = new mongoose.Schema({
 });
 
 module.exports = {
-  User: mongoose.model('User', UserSchema);
-  Bill: mongoose.model('Bill', BillSchema);
+  User: mongoose.model('User', UserSchema),
+  Bill: mongoose.model('Bill', BillSchema)
 };
 
 

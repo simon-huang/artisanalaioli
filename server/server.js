@@ -1,11 +1,13 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import Promise from 'bluebird';
+import routes from './utils/routes';
+import middleware from './utils/middleware';
 
 var app = express();
-var jsonParser = bodyParser.json();
-var urlParser = bodyParser.urlencoded({ extended: true });
+
+middleware(app,express);
+routes(app, express);
 
 app.listen(3000, function() {
   console.log('listening on port 3000');
-})
+});
+
