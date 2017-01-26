@@ -45,7 +45,7 @@ function removeFriend(req, res, next) {
   User.findOne({id: SOMETHING})
   .then(function(user) {
     for (var i = 0; i < user.friends.length; i++) {
-      if (user.friends[i].username = req.body.SOMETHING) {
+      if (user.friends[i].username === req.body.SOMETHING) {
         user.friends.splice(i,1);
       }
     }

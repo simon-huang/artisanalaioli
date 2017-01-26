@@ -9,8 +9,10 @@ export default function routes(app, express) {
                                      failureFlash: true })
   );
   app.post('/auth/logout', logout);
+
   app.post('/bills', postBill);
-  app.get('/bills', getOwnBills); // get own bills
+  app.get('/bills', getOwnBills); 
+
   app.get('/users', getAllUsers); // to use when adding friends
   app.get('/me/friends', getFriends);
   app.post('/me/friends', addFriend);
