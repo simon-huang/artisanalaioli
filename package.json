@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/artisanalaioli/artisanalaioli/issues"
   },
-  "homepage": "https://github.com/artisanalaioli/artisanalaioli#readme"
+  "homepage": "https://github.com/artisanalaioli/artisanalaioli#readme",
+  "dependencies": {
+    "minimatch": "^3.0.3"
+  }
 }
