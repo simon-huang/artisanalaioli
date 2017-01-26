@@ -10,5 +10,11 @@ export default function routes(app, express) {
   );
   app.post('/auth/logout', logout);
   app.post('/bills', postBill);
-  app.get('/bills', getOwnBills); // own bills
+  app.get('/bills', getOwnBills); // get own bills
+  /*
+  Possible endpoints:
+  /me --> get own bills (and debts and debtors) 
+  /me/friends --> get friends
+  */
+
 }
