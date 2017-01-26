@@ -1,9 +1,11 @@
 // var Q = require('q');
 var User = require('./Model.js').User;
 var Bill = require('./Model.js').Bill;
-
+// var Promise = require('bluebird');
 //.findOne, .create, .find({})
 
+// var createBill = Promise.promisify(Bill.create);
+// var findUser = Promise.promisify(User.findOne);
 
 /*
 to POST a bill:
@@ -12,7 +14,7 @@ to POST a bill:
   3. Send response
 */
 module.exports = {
-  newBill: function(req, res, next) {
+  newBillWithPromises: function(req, res, next) {
     var newBill = {
       userID: SOMETHING,
       total: SOMETHING,
@@ -20,19 +22,18 @@ module.exports = {
       info: SOMETHING
     };
     Bill.create(newBill)
-      .then(function(createdBill) {
-        User.find({id: SOMETHING})
-          .then(function(user) {
-            user.bills.push(createdBill.id);
-            user.save(function(error, savedUser) {
-              if (error) {
-                console.log(error) 
-              } else {
-                res.send('Success');
-            }
-          });
-        });
+    .then(function(createdBill) {
+      User.findOne({id: SOMETHING})
+      .then(function(user) {
+        user.bills.push(createdBill.id);
+        user.save(function(error, savedUser) {
+          if (error) {
+            console.log(error) 
+          } else {
+            res.send('Success');
+        }
       });
+    });
   }
 };
 
