@@ -5,6 +5,59 @@ import { Bill } from './models.js';
 
 // ALL UNTESTED
 
+
+function getAllUsers(req, res, next) {
+  User.find({})
+  .then(function(users) {
+    res.send(users);
+  });
+}
+
+function getFriends(req, res, next) {
+  User.findOne({id: SOMETHING})
+  .then(function(user) {
+    User.find({})
+    .where(id).in(user.friends)
+    .then(function(friends) {
+      res.send(friends);
+    });
+  });
+}
+
+function addFriend(req, res, next) {
+  User.findOne({id: SOMETHING})
+  .then(function(user) {
+    User.findOne({username: req.body.SOMETHING})
+    .then(function(friend) {
+      user.friends.push(friend.id);
+      user.save(function(error, savedUser) {
+        if (error) {
+          console.log(error); 
+        } else {
+          res.send('Friend added');
+        }
+      });
+    });
+  });
+}
+
+function removeFriend(req, res, next) {
+  User.findOne({id: SOMETHING})
+  .then(function(user) {
+    for (var i = 0; i < user.friends.length; i++) {
+      if (user.friends[i].username = req.body.SOMETHING) {
+        user.friends.splice(i,1);
+      }
+    }
+    user.save(function(error, savedUser) {
+      if (error) {
+        console.log(error); 
+      } else {
+        res.send('Friend removed');
+      }
+    });
+  });
+}
 /*
 Consider refactoring to also send all bills related to you (the ones
 you don't own but were part of)
@@ -44,13 +97,13 @@ function postBill(req, res, next) {
         if (error) {
           console.log(error); 
         } else {
-          res.send('Success');
+          res.send('Bill saved');
         }
       });
     });
   });
 }
 
-export { postBill, getOwnBills };
+export { postBill, getOwnBills, getAllUsers, getFriends, addFriend, removeFriend };
 
 
