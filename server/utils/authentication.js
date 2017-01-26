@@ -12,7 +12,9 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   User.findOne({ _id: id }).then(function(user) {
-    done(err, user);
+    done(null, user);
+  }).catch(function(err) {
+    done(err); 
   });
 });
 
@@ -39,8 +41,8 @@ function register(req, res, next) {
 
   console.log(User);
 
-  User.find({ username: username })
-    .exec(function(user) {
+  User.findOne({ username: username })
+    .exec(function(err, user) {
       console.log('found user', user);
       if (!user) {
         return bcrypt.genSaltAsync()
@@ -58,10 +60,10 @@ function register(req, res, next) {
             res.end('saved');
           }).catch(function(err) {
             console.log('some kind of error', err); 
-            res.setStatus(400).end();
+            res.status(400).end();
           });
       } else {
-        res.end('user exists');
+        res.status(409).end('user exists');
       }
     });
 }
