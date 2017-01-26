@@ -6,15 +6,29 @@ import { User } from '../db/models';
 
 var bcrypt = Promise.promisifyAll(bcryptOriginal);
 
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findOne({ _id: id }).then(function(user) {
+    done(err, user);
+  });
+});
+
 passport.use(new LocalStrategy({ passReqToCallback: true },
   function(req, username, password, done) {
     User.findOne({ username: username }).then(function(user) {
-      bcrypt.compareAsync(password, user.password)
-        .then(function(isCorrect) {
-          return isCorrect ? done(null, user) : done(null, false);
-        }).catch(function(err) {
-          done(err); 
-        });
+      if (user) {
+        bcrypt.compareAsync(password, user.password)
+          .then(function(isCorrect) {
+            return isCorrect ? done(null, user) : done(null, false);
+          }).catch(function(err) {
+            return done(err); 
+          });
+      } else {
+        return done(null, false);
+      }
     });
   }));
 
@@ -52,4 +66,10 @@ function register(req, res, next) {
     });
 }
 
-export { passport, register };
+function logout(req, res, next) {
+  req.dession.destroy(function(err) {
+    res.redirect('/auth/login');
+  });
+}
+
+export { passport, register, logout };

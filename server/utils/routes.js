@@ -1,4 +1,4 @@
-import { passport, register } from './authentication';
+import { passport, register, logout } from './authentication';
 
 
 export default function routes(app, express) {
@@ -8,4 +8,5 @@ export default function routes(app, express) {
                                      failureRedirect: '/auth/login',
                                      failureFlash: true })
   );
+  app.post('/auth/logout', logout);
 }
