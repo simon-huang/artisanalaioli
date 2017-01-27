@@ -34,7 +34,7 @@ function addFriend(req, res, next) {
         if (error) {
           console.log(error); 
         } else {
-          res.send('Friend added');
+          res.end('Friend added');
         }
       });
     });
@@ -53,7 +53,7 @@ function removeFriend(req, res, next) {
       if (error) {
         console.log(error); 
       } else {
-        res.send('Friend removed');
+        res.end('Friend removed');
       }
     });
   });
@@ -71,10 +71,10 @@ send an object instead of an array:
   };
 */
 function getOwnBills(req, res, next) {
-  User.findOne({id: SOMETHING})
+  User.findOne({_id: req.body.userID})
   .then(function(user) {
     Bill.find({})
-    .where(id).in(user.bills)
+    .where('_id').in(user.bills)
     .then(function(bills) {
       res.send(bills);
     });
@@ -83,21 +83,21 @@ function getOwnBills(req, res, next) {
 
 function postBill(req, res, next) {
   var newBill = {
-    userID: SOMETHING,
-    total: SOMETHING,
-    people: SOMETHING,
-    info: SOMETHING
+    userID: req.body.userID,
+    total: req.body.total,
+    people: req.body.people,
+    info: req.body.info
   };
   Bill.create(newBill)
   .then(function(createdBill) {
-    User.findOne({id: SOMETHING})
+    User.findOne({_id: req.body.userID})
     .then(function(user) {
-      user.bills.push(createdBill.id);
+      user.bills.push(createdBill._id);
       user.save(function(error, savedUser) {
         if (error) {
           console.log(error); 
         } else {
-          res.send('Bill saved');
+          res.status(201).end('Bill saved');
         }
       });
     });

@@ -5,7 +5,40 @@ import { app } from '../server';
 
 var expect = chai.expect;
 
-describe('Authentication Test', function() {
+describe('Bill Collection Tests', function() {
+  var agent = request.agent(app);
+  var testSession;
+
+  beforeEach(function() {
+    testSession = session(app);
+  });
+
+  describe('Post', function() {
+    it('should respond to users with 201 status code', function(done) {
+      agent
+        .post('/bills')
+        .send({userID: '588a6577025821309879cd46', total: 39.10, people: [], info: ''})
+        .end(function(err, res) {
+          expect(res.statusCode).to.equal(201);
+          expect(res.text).to.equal('Bill saved');
+          done();
+        });
+    });
+  });
+  describe('Get Own Bills', function() {
+    it('should respond to users with an array of their bills', function(done) {
+      agent
+        .get('/bills')
+        .send({userID: '588a6577025821309879cd46'})
+        .end(function(err, res) {
+          console.log(res.text);
+          done();
+        });
+    });
+  });
+});
+
+xdescribe('Authentication Test', function() {
   var agent = request.agent(app);
   var testSession;
 
