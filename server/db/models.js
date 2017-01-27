@@ -1,4 +1,7 @@
+import Promise from 'bluebird';
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/divvy');
+mongoose.Promise = Promise;
 
 var UserSchema = new mongoose.Schema({
   username: String,
@@ -11,6 +14,7 @@ var UserSchema = new mongoose.Schema({
   venmo: String
 });
 
+//allow a (restaurant) name, a date
 var BillSchema = new mongoose.Schema({
   userID: mongoose.Schema.Types.ObjectId,
   total: Number,
