@@ -37,6 +37,7 @@ passport.use(new LocalStrategy({ passReqToCallback: true },
 function register(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
+  var email = req.body.email;
 
   User.findOne({ username: username })
     .exec(function(err, user) {
@@ -47,7 +48,8 @@ function register(req, res, next) {
           }).then(function(hashedPassword) {
             var newUser = new User({ 
               username: username,
-              password: hashedPassword
+              password: hashedPassword,
+              email: email
             });
 
             return newUser.save();
