@@ -34,6 +34,15 @@ passport.use(new LocalStrategy({ passReqToCallback: true },
     });
   }));
 
+function auth(req, res, next) {
+  !req.isAuthenticated() ? req.send(401) : next();
+}
+
+function login(req, res, next) {
+  req.session.username = req.user.username;
+  res.redirect('/');
+}
+
 function register(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
@@ -54,7 +63,7 @@ function register(req, res, next) {
 
             return newUser.save();
           }).then(function(user) {
-            res.end('saved');
+            next();
           }).catch(function(err) {
             res.status(400).end();
           });
@@ -71,4 +80,4 @@ function logout(req, res, next) {
   });
 }
 
-export { passport, register, logout };
+export { passport, login, register, logout };
