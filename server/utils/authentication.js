@@ -76,7 +76,8 @@ function register(req, res, next) {
 function logout(req, res, next) {
   req.session.destroy(function(err) {
     res.clearCookie('connect.sid');
-    res.redirect('/auth/login');
+    res.end('Logged out');
+    // res.redirect('/auth/login');
   });
 }
 

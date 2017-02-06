@@ -51,7 +51,7 @@ angular.module('myApp.auth', ['ngRoute'])
       $scope.user.email = '';
       $scope.user.password = '';
       $rootScope.signedIn = true;
-      console.log(response);
+      console.log('signed up', response);
     })
     .catch(function(error) {
       console.log('Error: ', error);
