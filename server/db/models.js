@@ -18,8 +18,8 @@ var UserSchema = new mongoose.Schema({
 var BillSchema = new mongoose.Schema({
   userID: mongoose.Schema.Types.ObjectId,
   total: Number,
-  people: [mongoose.Schema.Types.ObjectId],
-  info: String,
+  people: [],
+  info: [],
   outstanding: [{
     userID: mongoose.Schema.Types.ObjectId, 
     amount: Number

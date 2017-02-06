@@ -89,6 +89,7 @@ function getOwnBills(req, res, next) {
 }
 
 function postBill(req, res, next) {
+  console.log(req.body);
   var newBill = {
     userID: req.session.passport.user,
     total: req.body.total,
@@ -97,7 +98,7 @@ function postBill(req, res, next) {
   };
   Bill.create(newBill)
   .then(function(createdBill) {
-    User.findOne({_id: req.body.userID})
+    User.findOne({_id: req.session.passport.user})
     .then(function(user) {
       user.bills.push(createdBill._id);
       user.save(function(error, savedUser) {

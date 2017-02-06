@@ -10,6 +10,7 @@ angular.module('myApp.bills', ['ngRoute'])
 
 .controller('BillsController', function ($scope, $http) {
   $scope.bills = [];
+  $scope.retrieved = false;
 
   $http({
     method: 'GET',
@@ -17,8 +18,9 @@ angular.module('myApp.bills', ['ngRoute'])
   })
   .then(function(response) {
     console.log('response: ', response);
-    if (response.data.length > 0) {
+    if (Array.isArray(response.data)) {
       $scope.bills = response;
+      $scope.retrieved = true;
     }
 
   })

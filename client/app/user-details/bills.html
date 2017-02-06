@@ -1,4 +1,8 @@
 <div id='bills'>
   <h1>My Bills</h1>
-  <h2 ng-model='bills'></h2>
+  <span ng-show='!$rootScope.signedIn'>Please login</span>
+  <ul ng-show='retrieved' ng-model="bills">
+    <li ng-repeat="bill in bills" ng-click=''>{{ bill }}</li>
+  </ul>
+
 </div>
