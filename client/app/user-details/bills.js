@@ -8,7 +8,7 @@ angular.module('myApp.bills', ['ngRoute'])
   });
 }])
 
-.controller('BillsController', function ($scope, $http) {
+.controller('BillsController', function ($scope, $rootScope, $http) {
   $scope.bills = [];
   $scope.retrieved = false;
 

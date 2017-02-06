@@ -1,6 +1,6 @@
 <div id='bills'>
   <h1>My Bills</h1>
-  <span ng-show='!$rootScope.signedIn'>Please login</span>
+  <span ng-show='!signedIn'>Please login</span>
   <ul ng-show='retrieved' ng-model="bills">
     <li ng-repeat="bill in bills" ng-click=''>{{ bill }}</li>
   </ul>
