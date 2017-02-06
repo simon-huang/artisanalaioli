@@ -1,8 +1,10 @@
 <div id='bills'>
   <h1>My Bills</h1>
   <span ng-show='!signedIn'>Please login</span>
-  <ul ng-show='retrieved' ng-model="bills">
-    <li ng-repeat="bill in bills" ng-click=''>{{ bill }}</li>
-  </ul>
-
+  <div ng-show='retrieved'>
+    <div ng-repeat="bill in bills">
+      {{bill.restaurant || 'unknown restaurant'}}
+      <li ng-repeat='person in bill.info'> {{person.name + ': ' + person.total}} </li>
+    </div>
+  </div>
 </div>

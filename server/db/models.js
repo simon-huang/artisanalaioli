@@ -16,6 +16,7 @@ var UserSchema = new mongoose.Schema({
 
 //allow a (restaurant) name, a date
 var BillSchema = new mongoose.Schema({
+  restaurant: String,
   userID: mongoose.Schema.Types.ObjectId,
   total: Number,
   people: [],

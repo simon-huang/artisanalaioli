@@ -132,6 +132,7 @@ angular.module('myApp.split', ['ngRoute'])
             method: 'POST',
             url: '/bills',
             data: {
+                restaurant: $scope.bill.name,
                 total: $scope.bill.priceBeforeTip * (1 + $scope.bill.tipRate + $scope.bill.taxRate),
                 people: $scope.friendNames,
                 info: $scope.friends

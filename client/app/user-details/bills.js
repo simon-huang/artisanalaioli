@@ -19,7 +19,7 @@ angular.module('myApp.bills', ['ngRoute'])
   .then(function(response) {
     console.log('response: ', response);
     if (Array.isArray(response.data)) {
-      $scope.bills = response;
+      $scope.bills = response.data;
       $scope.retrieved = true;
     }
 

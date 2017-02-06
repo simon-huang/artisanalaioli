@@ -92,6 +92,7 @@ function postBill(req, res, next) {
   console.log(req.body);
   var newBill = {
     userID: req.session.passport.user,
+    restaurant: req.body.restaurant,
     total: req.body.total,
     people: req.body.people,
     info: req.body.info
