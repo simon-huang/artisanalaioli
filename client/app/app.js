@@ -16,7 +16,7 @@ angular.module('myApp', [
   $routeProvider.otherwise({redirectTo: '/view1'});
 }
 ])
-.run(function($rootScope, $http) {
+.run(function($rootScope, $http, $window) {
   $rootScope.signout = function() {
     console.log('trying to sign out');
     $http({
@@ -26,6 +26,7 @@ angular.module('myApp', [
     .then(function(response) {
       console.log('logged out', response);
       $rootScope.signedIn = false;
+      $window.location.href = '/#!/signin';
     })
     .catch(function(error) {
       console.log('Error: ', error);
