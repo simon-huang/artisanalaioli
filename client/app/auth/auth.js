@@ -30,6 +30,7 @@ angular.module('myApp.auth', ['ngRoute'])
       $scope.user.password = '';
       $rootScope.signedIn = true;
       console.log('login', response);
+      $rootScope.$emit('signIn');
     })
     .catch(function(error) {
       console.log('Error: ', error);
@@ -51,7 +52,8 @@ angular.module('myApp.auth', ['ngRoute'])
       $scope.user.email = '';
       $scope.user.password = '';
       $rootScope.signedIn = true;
-      console.log(response);
+      console.log('signed up', response);
+      $rootScope.$emit('signIn');
     })
     .catch(function(error) {
       console.log('Error: ', error);
