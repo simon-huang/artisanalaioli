@@ -63,8 +63,7 @@ function register(req, res, next) {
 
             return newUser.save();
           }).then(function(user) {
-            passport.authenticate('local')(req, res, login);
-            res.end('saved');
+            next();
           }).catch(function(err) {
             res.status(400).end();
           });
