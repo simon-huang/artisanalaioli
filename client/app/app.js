@@ -16,8 +16,19 @@ angular.module('myApp', [
   $routeProvider.otherwise({redirectTo: '/view1'});
 }
 ])
-.run(function($rootScope) {
-  $rootScope.$on('signIn', function(event, args) {
-    console.log('Was signed in');
-  });
+.run(function($rootScope, $http) {
+  $rootScope.signout = function() {
+    console.log('trying to sign out');
+    $http({
+      method: 'POST',
+      url: '/auth/logout/'
+    })
+    .then(function(response) {
+      console.log('logged out', response);
+      $rootScope.signedIn = false;
+    })
+    .catch(function(error) {
+      console.log('Error: ', error);
+    });
+  }
 });
