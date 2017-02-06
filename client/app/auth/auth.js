@@ -12,7 +12,7 @@ angular.module('myApp.auth', ['ngRoute'])
   });
 }])
 
-.controller('AuthController', function ($scope, $http, $rootScope) {
+.controller('AuthController', function ($scope, $http, $rootScope, $window) {
   $scope.user = {};
 
 
@@ -29,6 +29,7 @@ angular.module('myApp.auth', ['ngRoute'])
       $scope.user.username = '';
       $scope.user.password = '';
       $rootScope.signedIn = true;
+      $window.location.href = '/#!/uploadbill';
       console.log('login', response);
     })
     .catch(function(error) {
@@ -51,6 +52,7 @@ angular.module('myApp.auth', ['ngRoute'])
       $scope.user.email = '';
       $scope.user.password = '';
       $rootScope.signedIn = true;
+      $window.location.href = '/#!/uploadbill';
       console.log('signed up', response);
     })
     .catch(function(error) {
