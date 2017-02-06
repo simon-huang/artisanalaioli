@@ -12,8 +12,9 @@ angular.module('myApp.auth', ['ngRoute'])
   });
 }])
 
-.controller('AuthController', function ($scope, $http) {
+.controller('AuthController', function ($scope, $http, $rootScope) {
   $scope.user = {};
+
 
   $scope.signin = function () {
     $http({
@@ -27,7 +28,8 @@ angular.module('myApp.auth', ['ngRoute'])
     .then(function(response) {
       $scope.user.username = '';
       $scope.user.password = '';
-      console.log(response);
+      $rootScope.signedIn = true;
+      console.log('login', response);
     })
     .catch(function(error) {
       console.log('Error: ', error);
@@ -48,6 +50,7 @@ angular.module('myApp.auth', ['ngRoute'])
       $scope.user.username = '';
       $scope.user.email = '';
       $scope.user.password = '';
+      $rootScope.signedIn = true;
       console.log(response);
     })
     .catch(function(error) {

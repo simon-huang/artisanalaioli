@@ -34,6 +34,10 @@ passport.use(new LocalStrategy({ passReqToCallback: true },
     });
   }));
 
+function auth(req, res, next) {
+  !req.isAuthenticated() ? req.send(401) : next();
+}
+
 function login(req, res, next) {
   req.session.username = req.user.username;
   res.redirect('/');
@@ -59,7 +63,7 @@ function register(req, res, next) {
 
             return newUser.save();
           }).then(function(user) {
-            req.session.username = user.username;
+            passport.authenticate('local')(req, res, login);
             res.end('saved');
           }).catch(function(err) {
             res.status(400).end();
