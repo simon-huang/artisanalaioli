@@ -3,7 +3,7 @@
   <span ng-show='!signedIn'>Please login</span>
   <div ng-show='retrieved'>
     <div ng-repeat="bill in bills">
-      {{bill.restaurant || 'unknown restaurant'}}
+      <strong>{{bill.restaurant || 'unknown restaurant'}}</strong>
       <li ng-repeat='person in bill.info'> {{person.name + ': ' + person.total}} </li>
     </div>
   </div>
